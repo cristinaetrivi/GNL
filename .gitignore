@@ -2,7 +2,6 @@
 .DS_store
 
 # Ignorar los main y los ficheros txt de prueba además de los ficheros de bonus
-*bonus.c
 main.c
 *.txt
 
