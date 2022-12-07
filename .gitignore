@@ -1,0 +1,18 @@
+# Ignora archivos del sistema Mac 
+.DS_store
+
+# Ignorar los main y los ficheros txt de prueba además de los ficheros de bonus
+*bonus.c
+main.c
+*.txt
+
+
+
+# Ignorar los .o y .out
+*.o
+*.out
+*.a
+*.gch
+
+#Ignorar el fichero del espacio de trabajo
+*.code-workspace
