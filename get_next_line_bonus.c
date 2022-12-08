@@ -6,7 +6,7 @@
 /*   By: ctrivino <ctrivino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 12:03:10 by ctrivino          #+#    #+#             */
-/*   Updated: 2022/12/08 19:12:34 by ctrivino         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:20:33 by ctrivino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*get_next_line(int fd)
 	int			index;
 	char		*my_line;
 
-	if (BUFFER_SIZE < 1|| fd < 0 || fd > OPEN_MAX)
+	if (BUFFER_SIZE < 1 || fd < 0 || fd > OPEN_MAX)
 		return (NULL);
 	value[fd] = ft_read(fd, value[fd]);
 	if (!value[fd])
