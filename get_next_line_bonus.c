@@ -6,7 +6,7 @@
 /*   By: ctrivino <ctrivino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 12:03:10 by ctrivino          #+#    #+#             */
-/*   Updated: 2022/12/08 18:10:32 by ctrivino         ###   ########.fr       */
+/*   Updated: 2022/12/08 19:12:34 by ctrivino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,24 @@ int	ft_index(char *value)
 	return (-1);
 }
 
-char	*get_my_line(char **value, int index)
+char	*get_my_line(char **value, int index, int fd)
 {
 	char	*line;
 	char	*tmp;
 
 	if (index >= 0)
 	{
-		line = ft_substr(*value, 0, index + 1);
-		tmp = ft_substr(*value, index + 1, ft_strlen(*value));
-		free(*value);
-		*value = ft_strdup(tmp);
+		line = ft_substr(value[fd], 0, index + 1);
+		tmp = ft_substr(value[fd], index + 1, ft_strlen(value[fd]));
+		free(value[fd]);
+		value[fd] = ft_strdup(tmp);
 		free(tmp);
 	}
 	else
 	{
-		line = *value;
-		*value = NULL;
-		free(*value);
+		line = value[fd];
+		value[fd] = NULL;
+		free(value[fd]);
 	}
 	return (line);
 }
@@ -57,18 +57,17 @@ char	*ft_read(int fd, char *value)
 	nr_bytes = 1;
 	while (nr_bytes > 0 && ft_strchr(readed, '\n') == 0)
 	{
-		if (!value)
-			value = ft_strdup("");
 		nr_bytes = read(fd, readed, BUFFER_SIZE);
 		if (nr_bytes < 0)
 		{
 			free(value);
 			return (NULL);
 		}
-		if (nr_bytes == 0)
-			return (value);
 		readed[nr_bytes] = '\0';
-		aux = ft_strdup(value);
+		if (value != NULL)
+			aux = ft_strdup(value);
+		else
+			aux = ft_strdup("");
 		free(value);
 		value = ft_strjoin(aux, readed);
 		free(aux);
@@ -82,13 +81,13 @@ char	*get_next_line(int fd)
 	int			index;
 	char		*my_line;
 
-	if (BUFFER_SIZE < 1 || fd < 0 || fd >= OPEN_MAX)
+	if (BUFFER_SIZE < 1|| fd < 0 || fd > OPEN_MAX)
 		return (NULL);
 	value[fd] = ft_read(fd, value[fd]);
 	if (!value[fd])
 		return (NULL);
 	index = ft_index(value[fd]);
-	my_line = get_my_line(&value[fd], index);
+	my_line = get_my_line(value, index, fd);
 	if (ft_strlen(my_line) == 0)
 	{
 		free(value[fd]);

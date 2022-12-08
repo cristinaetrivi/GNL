@@ -4,6 +4,11 @@
 # Ignorar los main y los ficheros txt de prueba además de los ficheros de bonus
 main.c
 *.txt
+1
+2
+3
+nl
+42_with_nl
 
 
 
