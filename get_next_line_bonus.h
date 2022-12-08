@@ -6,7 +6,7 @@
 /*   By: ctrivino <ctrivino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 11:56:54 by ctrivino          #+#    #+#             */
-/*   Updated: 2022/12/07 17:38:03 by ctrivino         ###   ########.fr       */
+/*   Updated: 2022/12/08 15:47:01 by ctrivino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # endif
 
 # ifndef OPEN_MAX
-#  define OPEN_MAX 10240
+#  define OPEN_MAX 4096
 # endif
 
 char	*get_next_line(int fd);

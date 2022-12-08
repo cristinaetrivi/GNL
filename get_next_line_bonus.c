@@ -6,7 +6,7 @@
 /*   By: ctrivino <ctrivino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 12:03:10 by ctrivino          #+#    #+#             */
-/*   Updated: 2022/12/07 17:39:01 by ctrivino         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:10:32 by ctrivino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*get_my_line(char **value, int index)
 	{
 		line = *value;
 		*value = NULL;
+		free(*value);
 	}
 	return (line);
 }
@@ -56,12 +57,16 @@ char	*ft_read(int fd, char *value)
 	nr_bytes = 1;
 	while (nr_bytes > 0 && ft_strchr(readed, '\n') == 0)
 	{
+		if (!value)
+			value = ft_strdup("");
 		nr_bytes = read(fd, readed, BUFFER_SIZE);
 		if (nr_bytes < 0)
 		{
 			free(value);
 			return (NULL);
 		}
+		if (nr_bytes == 0)
+			return (value);
 		readed[nr_bytes] = '\0';
 		aux = ft_strdup(value);
 		free(value);
@@ -77,7 +82,7 @@ char	*get_next_line(int fd)
 	int			index;
 	char		*my_line;
 
-	if (BUFFER_SIZE < 1 || fd < 0)
+	if (BUFFER_SIZE < 1 || fd < 0 || fd >= OPEN_MAX)
 		return (NULL);
 	value[fd] = ft_read(fd, value[fd]);
 	if (!value[fd])
