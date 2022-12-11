@@ -6,7 +6,7 @@
 /*   By: ctrivino <ctrivino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 12:03:10 by ctrivino          #+#    #+#             */
-/*   Updated: 2022/12/07 16:55:54 by ctrivino         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:22:40 by ctrivino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*get_my_line(char **value, int index)
 	{
 		line = *value;
 		*value = NULL;
+		free(*value);
 	}
 	return (line);
 }

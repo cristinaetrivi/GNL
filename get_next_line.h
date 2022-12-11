@@ -6,7 +6,7 @@
 /*   By: ctrivino <ctrivino@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 11:56:54 by ctrivino          #+#    #+#             */
-/*   Updated: 2022/12/07 17:37:57 by ctrivino         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:21:30 by ctrivino         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char	*s);
-void	ft_bzero(void	*s, size_t n);
 char	*ft_strchr(char *s, int c);
 char	*ft_strdup(char *s);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
